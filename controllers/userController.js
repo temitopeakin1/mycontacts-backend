@@ -10,13 +10,13 @@ const registerUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
     if ( !username || !email || !password ) {
         res.status(400);
-        throw new Error( "All fields are mandatory" )
+        throw new Error( "All fields are mandatory" );
     }
     // use to check if the email address exist on the database
     const userAvailable = await User.findOne({email});
     if (userAvailable) {
         res.status(404);
-        throw new Error( "User already registered" )
+        throw new Error( "User already registered" );
     }
 
     // hash the password using the bcrypt library , create the hash password
